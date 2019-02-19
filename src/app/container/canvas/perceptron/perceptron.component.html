@@ -1,0 +1,39 @@
+
+<h1>Exercice - IA - Simple perceptron</h1>
+<div class="content__wrapper" style="position: relative; display: flex; ">
+  <div class="canvas__description" style="max-width: 512px; margin-right: auto;">
+  Simple implementation du mecanisme du perceptron.<br>
+  Un unique perceptron muni de 2 entrée et d'une sortie s'entraine à "deviner" s'il est au dessus ou en dessous
+  de la diagonale.<br>
+  Le perceptron possede N entrée (ici 2) et un nombre égal de poids. Poids qui sont multiplié à la valeur d'entrée et modifié
+  selon si la valeure de sortie est en erreure ou non.<br> 
+    <ul>
+      <li>
+        Le "<b>resultat</b> en sortie" [1] ou [-1] est calculée selon si la somme des <b>entrées</b> multipliées par leurs <b>poids</b> est superieure ou inferieure à 0.
+      </li>
+      <li>
+        Ce resultat est <b>comparé</b> à celui attendu pour ces entrées. Les données de sorties attendues sont contenues dans un jeu d'entrainement calculé plus tôt
+      </li>
+      <li>
+        Le calcul du <b>delta</b> entre la sortie attendue et la sortie du perceptron donne la "quantité d'erreure" [2] ou [-2] ou [0].
+      </li>
+      <li>
+        le <b>delta</b> d'erreure donne la direction [+] ou [-] vers laquelle les poids du perceptrons seront modifié à la prochaine génération
+      </li>
+  </ul>
+
+  <div *ngIf="displayTable && displayKeys.length" class="state__description" style="display: flex;">
+    <div *ngFor="let key of displayKeys">
+      <span class="state__description__label" [innerHTML]="innerTrustedHTML(key)"></span>
+      <span class="state__description__value">{{displayTable[key]}}</span>
+    </div>
+  </div>
+  </div>
+  <div id="my-p5-canvas" class="p5js__canvas" style="float: right; align-content: center; justify-content: center; margin: auto;"></div>
+</div>
+<div style="align-content: center; margin-right: 32px;">
+  <button style="width: 128px; height: 48px;" (click)="toggleNextGen()">next generation</button>
+</div>
+<div style="align-content: center; margin-right: 32px;">
+  <button style="width: 128px; height: 48px;" (click)="resetPerceptron()">reset perceptron</button>
+</div>

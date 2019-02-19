@@ -1,0 +1,9 @@
+.btn-launch {
+    background-color: #353577;
+    color: #bbbaba;
+    transition: color 0.5s;
+
+    &:hover {
+        background-color: #242453;
+    }
+}

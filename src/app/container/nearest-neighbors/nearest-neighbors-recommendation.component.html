@@ -1,0 +1,14 @@
+<h1>Nearest neighbors recomendation</h1>
+<span (click)="onLog()">log</span>
+<div #mainFrame class="frame__main" id="myFrame">
+    <select *ngIf="configLoaded" (change)="changeFocus($event.target.value)">
+        <option *ngFor="let user of starwarsRating.users" [value]="userString(user)">{{user.name}}</option>
+    </select>
+    <div *ngIf="selectedUser">
+        <ul>
+            <li *ngFor="let key of selectedUserDisplay">{{key}} : {{selectedUser[key]}}</li>
+        </ul>
+    </div>
+</div>
+
+

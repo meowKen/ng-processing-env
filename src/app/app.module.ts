@@ -1,24 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { NearestNeighborsRecommendationComponent } from './container/nearest-neighbors-recommendation/nearest-neighbors-recommendation.component';
-import { SidebarComponent } from './component/sidebar/sidebar.component';
-import { LayoutComponent } from './container/layout/layout.component';
+import { Config } from './config/config';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
+export function loadConfig(config: Config) {
+  return () => config.load();
+}
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NearestNeighborsRecommendationComponent,
-    SidebarComponent,
-    LayoutComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    Config,
+    RouterModule,
+    { provide: APP_INITIALIZER, useFactory: loadConfig, deps: [Config], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
