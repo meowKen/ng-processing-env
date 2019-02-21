@@ -3,14 +3,19 @@ export class Point {
     y: number;
     label: number;
 
-    constructor(width, height) {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        // this.label = this.x > this.y ? 1 : -1;
-        if (this.x > this.y) {
-            this.label = 1;
-        } else {
-            this.label = -1;
-        }
+    /**
+     * @param width
+     * @param height
+     */
+    constructor(width?: number, height?: number) {
+        // deadly ternaire of death
+        this.x = width ? (Math.random() * (width - (-width)) + (-width)) : (Math.random() * (1 - (-1)) + (-1));
+        this.y = height ? (Math.random() * (height - (-height)) + (-height)) : (Math.random() * (1 - (-1)) + (-1));
     }
+
+    mark(lineY: number) {
+        this.label = (lineY > this.y) ? 1 : -1;
+    }
+
+
 }

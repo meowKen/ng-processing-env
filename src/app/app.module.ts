@@ -7,6 +7,7 @@ import { Config } from './config/config';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { UtilService } from './service/util.service';
 
 export function loadConfig(config: Config) {
   return () => config.load();
@@ -25,6 +26,7 @@ export function loadConfig(config: Config) {
   providers: [
     Config,
     RouterModule,
+    UtilService,
     { provide: APP_INITIALIZER, useFactory: loadConfig, deps: [Config], multi: true }
   ],
   bootstrap: [AppComponent]

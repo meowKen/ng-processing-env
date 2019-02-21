@@ -2,12 +2,16 @@
  * Represents a simple perceptron
  * @PROPERTY weights: an array of weights to multiply the input values with
  * @PROPERTY learningRate: a number < to 1, multiply the error score to tweek the steering power
- * @PROPERTY totalScore: reset to 0 ON EACH generation, simple reference to the 'total correctness' of guesses regarding to the training set
+ * @PROPERTY totalScore: reset to 0 ON EACH generation, the sum of correct.
+ * @PROPERTY error: the current guess state of error
+ * Simple reference to the 'total correctness' of guesses regarding to the training set
  */
 export class Perceptron {
     private _weights: Array<number>;
     private _learningRate: number;
     private _totalScore: number;
+    private _error: number;
+    private _guess: number;
 
     /**
      * Should be able to initialize the perceptron with :
@@ -18,7 +22,7 @@ export class Perceptron {
     constructor(weights?, length?) {
         this._weights = weights ? weights : [];
         if (! weights) {
-            const len = length ? length : 2;
+            const len = length ? length : 3;
             for (let i = 0; i < len; i++) {
                 this._weights.push(Math.random() * (1 + 1) - 1);
             }
@@ -26,12 +30,19 @@ export class Perceptron {
         this._learningRate = 0.01;
     }
 
+    /**
+     * Resets the total score
+     */
     resetFlags() {
         this._totalScore = 0;
     }
 
+    /**
+     * Resets the perceptron and its 'knowledge'
+     * @param length new length / @OPTIONAL
+     */
     reset(length?) {
-        const len = length ? length : 2;
+        const len = length ? length : 3;
         for (let i = 0; i < len; i++) {
             this._weights[i] = Math.random() * (1 + 1) - 1;
         }
@@ -44,19 +55,15 @@ export class Perceptron {
      * @PARAM target: the result known from the training dataset
      * @PARAM p5: reference to an instance of p5js canvas
     */
-    train(inputs: Array<number>, target: number, p5: any) {
+    train(inputs: Array<number>, target: number) {
         try {
-            const guess = this.guess(inputs);
-            const error = target - guess;
-            if (error === 0) {
-                p5.fill(0, 255, 0);
-                this._totalScore++;
-            } else {
-                p5.fill(255, 0, 0);
+            this._guess = this.guess(inputs);
+            this._error = target - this._guess;
+            if (this._error === 0) {
+                this._totalScore ++;
             }
-            p5.ellipse(inputs[0], inputs[1], 10, 10);
             for (let i = 0; i < this._weights.length; i++) {
-                this._weights[i] += ((error * inputs[i]) * this._learningRate);
+                this._weights[i] += ((this._error * inputs[i]) * this._learningRate);
             }
             return this._totalScore;
         } catch (ex) {
@@ -66,6 +73,10 @@ export class Perceptron {
         }
     }
 
+    /**
+     * Compute the sum of (input * its weight) and pass it through the activation function
+     * @param inputs A list of number
+     */
     private guess(inputs: Array<number>) {
         if (this._weights && inputs && this._weights.length && inputs.length && inputs.length === this._weights.length) {
             let output = 0;
@@ -75,10 +86,16 @@ export class Perceptron {
 
             return this.sign(output);
         }
-        console.error('[PERCEPTRON][SUM] - Les entrée ou les poids du perceptron ne correspondent pas aux valeures attendue');
+        console.error('[PERCEPTRON][GUESS] - Les entrée ou les poids du perceptron ne correspondent pas aux valeures attendue');
+        console.error('[PERCEPTRON][GUESS] - weights.length ' + this._weights.length + ', inputs.length ' + inputs.length);
         return null;
     }
 
+    /**
+     * @ActivationFunction Returns a 'sign', [1] or [-1], based on the output sign sign.
+     * The sign can be seen as the 'direction' in which we want to tweek the weights
+     * @param guess The guessed output of the perceptron
+     */
     private sign(guess) {
         return guess == null ? null :
             guess >= 0 ? 1 :
@@ -95,5 +112,13 @@ export class Perceptron {
 
     public get totalScore(): number {
         return this._totalScore;
+    }
+
+    public get error(): number {
+        return this._error;
+    }
+
+    public get getGuess(): number {
+        return this._guess;
     }
 }
