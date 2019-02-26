@@ -1,0 +1,9 @@
+{
+    "path": [
+        "default",
+        "perceptron",
+        "copycat",
+        "matrixplay",
+        "colorprediction"
+    ]
+}

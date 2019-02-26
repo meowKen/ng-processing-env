@@ -1,4 +1,4 @@
-export class Point {
+export class PointPerceptron {
     x: number;
     y: number;
     label: number;

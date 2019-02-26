@@ -1,0 +1,24 @@
+<div class="content__wrapper__center">
+  <ul>
+    <li>
+      <div class="canvas__centered">
+        <span>Location X : </span>
+        <input type="range" name="points" [min]="0" [max]="800" (change)="updateLoc($event.target, 'x')">
+        <input type="text" [value]="userLocation.x">
+      </div>
+    </li>
+    <li>
+      <div class="canvas__centered">
+        <span>Location Y : </span>
+        <input type="range" name="points" [min]="0" [max]="800" (change)="updateLoc($event.target, 'y')">
+        <input type="text" [value]="userLocation.y">
+      </div>
+    </li>
+    <li>
+        <div class="canvas__centered">
+          <button (click)="addDrawable()">ADD</button>
+        </div>
+      </li>
+  </ul>
+  <div class="canvas__centered" id="color-prediction-p5-canvas" (click)="updateColor()"></div>
+</div>

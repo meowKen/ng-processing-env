@@ -4,7 +4,7 @@ import { TrainingService } from '../../../service/training.service';
 import * as p5 from 'p5';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UtilService } from '../../../service/util.service';
-import { Point } from '../../../model/point.model';
+import { PointPerceptron } from '../../../model/point-perceptron.model';
 
 @Component({
   selector: 'app-perceptron',
@@ -28,6 +28,7 @@ export class PerceptronComponent implements OnInit, AfterViewInit {
   xHmi = 0;
   yHmi = 0;
   private p5;
+  private initialized = false;
 
   constructor(private trainingService: TrainingService,
               private sanitizer: DomSanitizer,
@@ -36,15 +37,15 @@ export class PerceptronComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.cw = this.width;
-    this.ch = this.height;
+    this.cw = 800;
+    this.ch = 800;
     this.trainSet.points = this.trainingService.trainingSimple(200);
     this.trainSet.score = 0;
     this.displayMode['continue'] = false;
   }
 
   ngAfterViewInit() {
-    this.createCanvas();
+    // this.createCanvas();
   }
 
   private createCanvas() {
@@ -55,12 +56,6 @@ export class PerceptronComponent implements OnInit, AfterViewInit {
     p.setup = () => {
       const canvas = p.createCanvas(this.cw, this.ch);
       canvas.parent('my-p5-canvas');
-      if (this.trainSet.points) {
-        p.translate(this.cw / 2, this.ch / 2);
-        p.background(255);
-        this.drawPoints();
-        this.drawTargetLine();
-      }
     };
 
     p.draw = () => {
@@ -68,6 +63,12 @@ export class PerceptronComponent implements OnInit, AfterViewInit {
         this.toggleNextGen();
       }
     };
+  }
+
+  start() {
+    this.createCanvas();
+    this.drawPoints();
+    this.drawTargetLine();
   }
 
   /**
@@ -126,7 +127,7 @@ export class PerceptronComponent implements OnInit, AfterViewInit {
     return Object.keys(this.displayTable);
   }
 
-  computeDisplayCoordinate(point: Point) {
+  computeDisplayCoordinate(point: PointPerceptron) {
     this.xHmi = this.mapCoord(point.x);
     this.yHmi = this.mapCoord(point.y);
   }

@@ -1,0 +1,14 @@
+.p__canvas {
+    margin-left: 200px;
+    margin-right: 200px;
+
+    &__content {
+        align-content: center;
+        display: flex;
+
+        &__input {
+            max-width: 360px;
+            margin: 16px 32px;
+        }
+}
+}

@@ -1,8 +1,8 @@
-<app-sidebar (closeNavEvent)="closeNav()"></app-sidebar>
+<app-sidebar (closeNavEvent)="closeNav()" (_openCanvas)="onOpenCanvas($event)"></app-sidebar>
 
 <div #mainFrame class="frame__main" id="myFrame">
     <span class="btn__open" (click)="openNav()">open</span>
     <!-- <app-nearest-neighbors-recommendation></app-nearest-neighbors-recommendation> -->
-    <app-perceptron [width]="800" [height]="800"></app-perceptron>
+    <router-outlet></router-outlet>
 </div>
 

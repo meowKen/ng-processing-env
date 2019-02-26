@@ -20,20 +20,27 @@
       <li>
         le <b>delta</b> d'erreure donne la direction [+] ou [-] vers laquelle les poids du perceptrons seront modifié à la prochaine génération
       </li>
-  </ul>
+    </ul>
 
-  <div *ngIf="displayTable && displayKeys.length" class="state__description" style="display: flex;">
-    <div *ngFor="let key of displayKeys">
-      <span class="state__description__label" [innerHTML]="innerTrustedHTML(key)"></span>
-      <span class="state__description__value">{{displayTable[key]}}</span>
+    <div class="wrapper__content">
+      <div class="wrapper__content__row">
+        <button class="wrapper__content__row__btn" (click)="toggleNextGen()">next generation</button>
+      </div>
+      <div class="wrapper__content__row">
+        <button class="wrapper__content__row__btn" (click)="resetPerceptron()">reset perceptron</button>
+      </div>
+      <div class="wrapper__content__row">
+        <button class="wrapper__content__row__btn" (click)="start()">start canvas</button>
+      </div>
     </div>
-  </div>
+
+    <div *ngIf="displayTable && displayKeys.length" class="state__description" style="display: flex;">
+      <div *ngFor="let key of displayKeys">
+        <span class="state__description__label" [innerHTML]="innerTrustedHTML(key)"></span>
+        <span class="state__description__value">{{displayTable[key]}}</span>
+      </div>
+    </div>
   </div>
   <div id="my-p5-canvas" class="p5js__canvas" style="float: right; align-content: center; justify-content: center; margin: auto;"></div>
 </div>
-<div style="align-content: center; margin-right: 32px;">
-  <button style="width: 128px; height: 48px;" (click)="toggleNextGen()">next generation</button>
-</div>
-<div style="align-content: center; margin-right: 32px;">
-  <button style="width: 128px; height: 48px;" (click)="resetPerceptron()">reset perceptron</button>
-</div>
+

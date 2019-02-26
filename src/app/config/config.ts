@@ -11,9 +11,11 @@ export class Config {
     private _headerJSON: HttpHeaders = new HttpHeaders()
         .set('Content-Type', 'application/json; charset=utf8');
 
-    private starwarsRatingConfig = 'assets/starwarsRating.json';
+    private _starwarsRatingConfig = 'assets/starwarsRating.json';
+    private _existingCanvassesConfig = 'assets/existingCanvassesConfig.json';
 
     private _starwarsRating: any;
+    private _existingCanvasses;
 
     constructor(private http: HttpClient) {}
 
@@ -22,20 +24,32 @@ export class Config {
             if (data && data.length >= 1) {
                 this._starwarsRating = data[0];
             }
+            if (data && data.length >= 2) {
+                this._existingCanvasses = data[1];
+            }
         });
     }
 
     private getConfig() {
         return [
-            this.getStarwarsRating()
+            this.getStarwarsRating(),
+            this.getExistingCanvasses()
         ];
     }
 
     private getStarwarsRating(): Observable<any> {
-        return this.http.get(this.starwarsRatingConfig);
+        return this.http.get(this._starwarsRatingConfig);
     }
 
     get starwarsRating(): any {
         return this._starwarsRating;
+    }
+
+    private getExistingCanvasses(): Observable<any> {
+        return this.http.get(this._existingCanvassesConfig);
+    }
+
+    get existingCanvasses(): any {
+        return this._existingCanvasses;
     }
 }

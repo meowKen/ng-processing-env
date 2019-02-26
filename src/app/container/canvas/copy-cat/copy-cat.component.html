@@ -1,0 +1,12 @@
+<div class="p__canvas">
+  <h1>COPY Me</h1>
+  <h3>Insert text to generate a random copy with the style of the author</h3>
+  <div class="p__canvas__content">
+    <div class="p__canvas__content__input">
+      <input type="text" size="35" (change)="userTextUpdate($event.target)" value="userText">
+    </div>
+    <div class="p__canvas__content__input">
+      <textarea rows="10" cols="120">{{copyText}}</textarea>
+    </div>
+  </div>
+</div>

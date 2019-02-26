@@ -1,0 +1,13 @@
+
+.wrapper__content {
+    align-content: center;
+    display: flex;
+
+    &__row {
+        margin: 32px 16px;
+
+        &__btn {
+            width: 128px; height: 48px;
+        }
+    }
+}
