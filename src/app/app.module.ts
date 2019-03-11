@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { UtilService } from './service/util.service';
+import { AutonomousAgentComponent } from './container/canvas/autonomous-agent/autonomous-agent.component';
 
 export function loadConfig(config: Config) {
   return () => config.load();

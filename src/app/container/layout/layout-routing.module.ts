@@ -11,6 +11,10 @@ const routes: Routes = [
     component: LayoutComponent
   },
   {
+    path: 'autonomousagent',
+    loadChildren: '../canvas/autonomous-agent/autonomous-agent.module#AutonomousAgentModule'
+  },
+  {
     path: 'colorprediction',
     loadChildren: '../canvas/color-prediction/color-prediction.module#ColorPredictionModule'
   },

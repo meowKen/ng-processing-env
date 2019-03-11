@@ -4,6 +4,7 @@
         "perceptron",
         "copycat",
         "matrixplay",
-        "colorprediction"
+        "colorprediction",
+        "autonomousagent"
     ]
 }

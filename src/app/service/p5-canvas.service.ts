@@ -67,16 +67,29 @@ export class P5CanvasService {
   }
 
   addDrawable(obj: PDrawable) {
-    this._drawables.push(obj);
+    this._drawables.push(new PDrawable(obj));
     this.drawAll();
   }
 
-  private drawAll() {
+  displayItem(mesh: PDrawable) {
+    if (this._p5Ref) {
+      mesh.draw(this._p5Ref);
+    }
+  }
+
+  drawAll() {
     if (this._p5Ref && this._drawables && this._drawables.length) {
       this._drawables.forEach( (mesh) => {
         mesh.draw(this._p5Ref);
       });
     }
+  }
+
+  refreshAll() {
+    if (this._bgColor && this._p5Ref) {
+      this._p5Ref.background(this._bgColor.r, this._bgColor.g, this._bgColor.b);
+    }
+    this.drawAll();
   }
 
   private createCanvas() {

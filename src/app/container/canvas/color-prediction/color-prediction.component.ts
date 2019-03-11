@@ -4,6 +4,7 @@ import { PDrawable } from '../../../model/drawable.model';
 import { Point } from '../../../model/point';
 import { UtilService } from '../../../service/util.service';
 import { ColorRGB } from '../../../model/color';
+import { LineModel } from '../../../model/line.model';
 
 @Component({
   selector: 'app-color-prediction',
@@ -14,6 +15,8 @@ export class ColorPredictionComponent implements OnInit, AfterViewInit {
 
   private _parent = 'color-prediction-p5-canvas';
   private _pRef: any;
+
+  private t: LineModel;
 
   /**
    * DOM Input values
@@ -26,6 +29,9 @@ export class ColorPredictionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    const p1 = new Point({x: 0, y: 20});
+    const p2 = new Point({x: 200, y: 20});
+    this.t = new LineModel(p1, p2);
   }
 
   ngAfterViewInit(): void {
@@ -34,6 +40,7 @@ export class ColorPredictionComponent implements OnInit, AfterViewInit {
       parent: this._parent,
       bgColor: { r: 18, g: 208, b: 18 }
     });
+    console.log(this._pRef.constructor);
   }
 
   addDrawable() {

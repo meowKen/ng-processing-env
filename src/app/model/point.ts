@@ -11,4 +11,10 @@ export class Point {
             this.y = 0;
         }
     }
+
+    dist (b: Point): number {
+        const A = new Point({x: this.x, y: this.y});
+        const B = b;
+        return Math.sqrt(Math.pow(B.x - A.x, 2) + Math.pow(B.y - A.y, 2));
+    }
 }
