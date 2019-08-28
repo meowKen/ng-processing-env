@@ -5,6 +5,8 @@
         "copycat",
         "matrixplay",
         "colorprediction",
-        "autonomousagent"
+        "autonomousagent",
+        "mapgenerator",
+        "filereader"
     ]
 }

@@ -12,7 +12,7 @@ export class Config {
         .set('Content-Type', 'application/json; charset=utf8');
 
     private _starwarsRatingConfig = 'assets/starwarsRating.json';
-    private _existingCanvassesConfig = 'assets/existingCanvassesConfig.json';
+    private _existingCanvassesConfig = 'assets/routeCanvasConfig.json';
 
     private _starwarsRating: any;
     private _existingCanvasses;

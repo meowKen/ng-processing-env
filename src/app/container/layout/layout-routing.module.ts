@@ -11,6 +11,14 @@ const routes: Routes = [
     component: LayoutComponent
   },
   {
+    path: 'filereader',
+    loadChildren: '../canvas/file-reader/file-reader.module#FileReaderModule'
+  },
+  {
+    path: 'mapgenerator',
+    loadChildren: '../canvas/map-generator/map-generator.module#MapGeneratorModule'
+  },
+  {
     path: 'autonomousagent',
     loadChildren: '../canvas/autonomous-agent/autonomous-agent.module#AutonomousAgentModule'
   },

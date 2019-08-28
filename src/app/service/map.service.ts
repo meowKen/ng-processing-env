@@ -36,11 +36,11 @@ export class MapService {
      * User entry point
      */
     drawMap(depth?: number) {
-        const d = depth ? depth : 20;
-        const l = new LineModel();
-        for (let i = 0; i < d; i++) {
-            this.addLineHalfDistance();
-        }
+        // const d = depth ? depth : 20;
+        // const l = new LineModel();
+        // for (let i = 0; i < d; i++) {
+        //     this.addLineHalfDistance();
+        // }
     }
 
     private addLineHalfDistance() {
@@ -97,7 +97,6 @@ export class MapService {
      * @param n le nombre de routes
      */
     private build(n: number) {
-
     }
 
     get roadsDisplay() {

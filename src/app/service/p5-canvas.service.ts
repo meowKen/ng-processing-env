@@ -97,7 +97,7 @@ export class P5CanvasService {
   }
 
   /**
-   * @info no definition draw function;
+   * @info no definition of draw function;
    */
   private sketch = (p: any) => {
     p.setup = () => {
